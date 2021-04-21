@@ -20,22 +20,22 @@ public class ProjetoController {
 		this.projetoService = projetoService;
 	}
 
-	@RequestMapping(value="/projeto/listar", method = RequestMethod.GET)
-    public String getAll(Model model) {
-        model.addAttribute("tests", projetoService.getTodos());
+	@RequestMapping(value="/projetos/listar", method = RequestMethod.GET)
+    public String getTodos(Model model) {
+        model.addAttribute("projetos", projetoService.getTodos());
         return "listar-projeto";
     }
 
-	@RequestMapping(value="/projeto/adicionar", method = RequestMethod.GET)
-    public String getCreate(Model model) {
+	@RequestMapping(value="/projetos/adicionar", method = RequestMethod.GET)
+    public String getAdicionar(Model model) {
 		model.addAttribute("projeto", new Projeto());
         return "adicionar-projeto";
     }
 
-	@RequestMapping(value="/pessoas/adicionar", method = RequestMethod.POST)
-    public RedirectView addBook(@ModelAttribute("projeto") Projeto projeto, RedirectAttributes redirectAttributes) {
+	@RequestMapping(value="/projetos/adicionar", method = RequestMethod.POST)
+    public RedirectView adicionar(@ModelAttribute("projeto") Projeto projeto, RedirectAttributes redirectAttributes) {
 		projeto.setId(null);
-        Projeto projetoSalvo = projetoService.criar(projeto);
+        Projeto projetoSalvo = projetoService.salvar(projeto);
 
         final RedirectView redirectView = new RedirectView("/projeto/adicionar", true);
         redirectAttributes.addFlashAttribute("projetoSalvo", projetoSalvo);
@@ -43,8 +43,8 @@ public class ProjetoController {
         return redirectView;
     }
 
-	@RequestMapping(value="/projeto/remover/{id}", method = RequestMethod.GET)
-    public RedirectView remove(@PathVariable("id") Long id, RedirectAttributes redirectAttributes) {
+	@RequestMapping(value="/projetos/remover/{id}", method = RequestMethod.GET)
+    public RedirectView remover(@PathVariable("id") Long id, RedirectAttributes redirectAttributes) {
 		projetoService.deletarPorId(id);
 
         final RedirectView redirectView = new RedirectView("/projeto/listar", true);

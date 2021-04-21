@@ -15,22 +15,22 @@
 
 		<main role="main" class="inner cover">
 		
-		<c:url var="remove_teste_url" value="/teste/remover/" />
-		<c:if test="${removedTesteSuccess}"><div>Teste removido ${savedTeste.id} - ${savedTeste.description} com sucesso!</div></c:if>
+		<c:url var="remover_pessoa_url" value="/pessoas/remover/" />
+		
 		<table class="table table-striped">
 		  <thead>
 		    <tr>
 		      <th scope="col">Id</th>
-		      <th scope="col">Description</th>
+		      <th scope="col">Nome</th>
 		      <th scope="col">Opções</th>
 		    </tr>
 		  </thead>
 		  <tbody>
-		  		<c:forEach items="${tests}" var="test">
+		  		<c:forEach items="${pessoas}" var="pessoa">
                     <tr>
-                        <td>${test.id}</td>
-                        <td>${test.description}</td>
-                        <td><a class="btn btn-large btn-primary" href="${remove_teste_url}${test.id}">Remover</a></td>
+                        <td>${pessoa.id}</td>
+                        <td>${pessoa.nome}</td>
+                        <td><a class="btn btn-large btn-primary" href="${remover_pessoa_url}${pessoa.id}">Remover</a></td>
                     </tr>
                 </c:forEach>
 		  </tbody>

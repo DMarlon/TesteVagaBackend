@@ -19,7 +19,7 @@ public class ValidatorUtils {
 		return Objects.isNull(value) || value.isEmpty();
 	}
 
-	public static boolean isCPFValido(String federalregistration) {
+	public static boolean ehCPFValido(String federalregistration) {
 		return cpf(federalregistration);
 	}
 

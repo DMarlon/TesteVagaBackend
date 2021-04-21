@@ -21,21 +21,21 @@ public class PessoaController {
 	}
 
 	@RequestMapping(value="/pessoas/listar", method = RequestMethod.GET)
-    public String getAll(Model model) {
-        model.addAttribute("tests", pessoaService.getTodas());
+    public String getTodas(Model model) {
+        model.addAttribute("pessoas", pessoaService.getTodas());
         return "listar-pessoa";
     }
 
 	@RequestMapping(value="/pessoas/adicionar", method = RequestMethod.GET)
-    public String getCreate(Model model) {
+    public String getAdicionar(Model model) {
 		model.addAttribute("pessoa", new Pessoa());
         return "adicionar-pessoa";
     }
 
 	@RequestMapping(value="/pessoas/adicionar", method = RequestMethod.POST)
-    public RedirectView addBook(@ModelAttribute("pessoa") Pessoa pessoa, RedirectAttributes redirectAttributes) {
+    public RedirectView adicionar(@ModelAttribute("pessoa") Pessoa pessoa, RedirectAttributes redirectAttributes) {
 		pessoa.setId(null);
-        Pessoa pessoaSalva = pessoaService.save(pessoa);
+        Pessoa pessoaSalva = pessoaService.salvar(pessoa);
 
         final RedirectView redirectView = new RedirectView("/pessoas/adicionar", true);
         redirectAttributes.addFlashAttribute("pessoaSalva", pessoaSalva);
@@ -44,7 +44,7 @@ public class PessoaController {
     }
 
 	@RequestMapping(value="/pessoas/remover/{id}", method = RequestMethod.GET)
-    public RedirectView remove(@PathVariable("id") Long id, RedirectAttributes redirectAttributes) {
+    public RedirectView remover(@PathVariable("id") Long id, RedirectAttributes redirectAttributes) {
 		pessoaService.deletarPorId(id);
 
         final RedirectView redirectView = new RedirectView("/pessoas/listar", true);

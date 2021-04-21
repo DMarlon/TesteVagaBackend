@@ -21,9 +21,9 @@ public class ProjetoService {
 		this.projetoRepository = projetoRepository;
 	}
 
-	public Projeto criar(Projeto projeto) {
+	public Projeto salvar(Projeto projeto) {
 		checarCamposObrigatorios(projeto);
-		preencherCamposIniciaisCasoNaoInformados(projeto);
+		preencherValorPadroesCasoNaoInformados(projeto);
 		return projetoRepository.save(projeto);
 	}
 
@@ -33,10 +33,26 @@ public class ProjetoService {
 		if (projeto.getGerente() == null || ValidatorUtils.ehNullOuMenorQueUm(projeto.getGerente().getId()))
 			throw new RequiredFieldException("Deve ser informado um gerente para o projeto!");
 		if (projeto.getDataInicio() != null && projeto.getDataFim() != null && projeto.getDataInicio().isAfter(projeto.getDataFim()))
-			throw new RequiredFieldException("A data de inicio do projeto não pode ser maior que a data termino!");
+			throw new RequiredFieldException("A data de início do projeto não pode ser maior que a data término!");
+
+		if (!ValidatorUtils.ehNullOuBranco(projeto.getStatus())) {
+			try {
+				Status.getStatus(projeto.getStatus());
+			} catch (IllegalArgumentException exception) {
+				throw new RequiredFieldException(exception.getMessage());
+			}
+		}
+
+		if (!ValidatorUtils.ehNullOuBranco(projeto.getRisco())) {
+			try {
+				Risco.getRisco(projeto.getRisco());
+			} catch (IllegalArgumentException exception) {
+				throw new RequiredFieldException(exception.getMessage());
+			}
+		}
 	}
 
-	private void preencherCamposIniciaisCasoNaoInformados(Projeto projeto) {
+	private void preencherValorPadroesCasoNaoInformados(Projeto projeto) {
 		if (ValidatorUtils.ehNullOuBranco(projeto.getRisco()))
 			projeto.setRisco(Risco.BAIXO.getDescription());
 		if (ValidatorUtils.ehNullOuBranco(projeto.getStatus()))

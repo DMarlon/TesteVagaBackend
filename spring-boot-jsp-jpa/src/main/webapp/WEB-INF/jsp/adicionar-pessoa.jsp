@@ -17,7 +17,7 @@
 		<main role="main" class="inner cover">
 			<c:if test="${adicionarPessoaSuccess}"><div>Pessoa adicionada com sucesso: ${pessoaSalva.id} - ${pessoaSalva.nome}</div></c:if>
 
-			<c:url var="adicionar_pessoa_url" value="/pessoa/adicionar" />
+			<c:url var="adicionar_pessoa_url" value="/pessoas/adicionar" />
 			<form:form action="${adicionar_pessoa_url}" method="post" modelAttribute="pessoa">
 				<form:label path="nome">Nome: </form:label>
 				<form:input type="text" path="nome" /><br/>

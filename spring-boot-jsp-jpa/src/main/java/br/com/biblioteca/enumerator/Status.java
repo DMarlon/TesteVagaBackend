@@ -35,6 +35,15 @@ public enum Status {
         throw new IllegalArgumentException(code+" não é um status válido!");
     }
 
+	public static Status getStatus(String description) {
+        for(Status status : values()) {
+            if(status.getDescription().equals(description))
+            	return status;
+        }
+
+        throw new IllegalArgumentException(description+" não é um status válido!");
+    }
+
 	@Override
 	public String toString() {
 		return this.getDescription();

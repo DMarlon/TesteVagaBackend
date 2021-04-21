@@ -17,23 +17,11 @@
 		<main role="main" class="inner cover">
 			<c:if test="${adicionarProjetoSuccess}"><div>Projeto adicionado com sucesso: ${projetoSalvo.id} - ${projetoSalvo.nome}</div></c:if>
 
-			<c:url var="adicionar_projeto_url" value="/pessoa/adicionar" />
+			<c:url var="adicionar_projeto_url" value="/projetos/adicionar" />
 			<form:form action="${adicionar_projeto_url}" method="post" modelAttribute="projeto">
 				<form:label path="nome">Nome: </form:label>
 				<form:input type="text" path="nome" /><br/>
-				
-				<form:label path="description">Data Nascimento: </form:label>
-				<form:input type="text" path="datanascimento" /><br/>
-				
-				<form:label path="cpf">CPF: </form:label>
-				<form:input type="number" size="11" path="cpf" /><br/>
-				
-				<form:label path="funcionario">Funcionario: </form:label></br>
-				<form:input type="radio" path="sim" value="true" /><br/>
-				<form:label path="sim">Sim </form:label>
-				<form:input type="radio" path="nao" value="false" /><br/>
-				<form:label path="nao">Não </form:label>
-							
+											
 				<input type="submit" value="Cadastrar" />
 			</form:form>
 		</main>

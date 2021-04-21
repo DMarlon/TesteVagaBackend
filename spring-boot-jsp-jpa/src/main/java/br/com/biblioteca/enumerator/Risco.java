@@ -21,7 +21,7 @@ public enum Risco {
 		return this.description;
 	}
 
-	public static Risco getStatus(int code) {
+	public static Risco getRisco(int code) {
         for(Risco status : values()) {
             if(Integer.valueOf(status.getCode()).equals(code))
             	return status;
@@ -29,6 +29,16 @@ public enum Risco {
 
         throw new IllegalArgumentException(code+" não é um risco válido");
     }
+
+	public static Risco getRisco(String description) {
+        for(Risco risco : values()) {
+            if(risco.getDescription().equals(description))
+            	return risco;
+        }
+
+        throw new IllegalArgumentException(description+" não é um risco válido!");
+    }
+
 
 	@Override
 	public String toString() {

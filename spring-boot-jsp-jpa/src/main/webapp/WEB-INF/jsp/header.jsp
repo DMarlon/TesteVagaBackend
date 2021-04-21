@@ -4,11 +4,11 @@
 <header class="masthead mb-auto">
  	<c:url var="home_teste_url" value="/index" />
  	
-	<c:url var="listar_pessoa_url" value="/pessoa/listar" />
-	<c:url var="adicionar_pessoa_url" value="/pessoa/adicionar" />
+	<c:url var="listar_pessoa_url" value="/pessoas/listar" />
+	<c:url var="adicionar_pessoa_url" value="/pessoas/adicionar" />
 	
-	<c:url var="listar_projeto_url" value="/projeto/listar" />
-	<c:url var="adicionar_projeto_url" value="/projeto/adicionar" />
+	<c:url var="listar_projeto_url" value="/projetos/listar" />
+	<c:url var="adicionar_projeto_url" value="/projetos/adicionar" />
 	
 	<div class="inner">
   		<h3 class="masthead-brand">Teste Desbravador</h3>

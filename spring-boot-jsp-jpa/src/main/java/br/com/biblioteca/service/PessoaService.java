@@ -19,7 +19,7 @@ public class PessoaService {
 		this.pessoaRepository = pessoaRepository;
 	}
 
-	public Pessoa save(Pessoa pessoa) {
+	public Pessoa salvar(Pessoa pessoa) {
 		checarCamposObrigatorios(pessoa);
 		return pessoaRepository.save(pessoa);
 	}
@@ -27,7 +27,7 @@ public class PessoaService {
 	private void checarCamposObrigatorios(Pessoa pessoa) {
 		if (ValidatorUtils.ehNullOuBranco(pessoa.getNome()))
 			throw new RequiredFieldException("Deve ser informado um nome para a pessoa!");
-		if (!ValidatorUtils.ehNullOuBranco(pessoa.getCpf()) && ValidatorUtils.isCPFValido(pessoa.getCpf()))
+		if (!ValidatorUtils.ehNullOuBranco(pessoa.getCpf()) && ValidatorUtils.ehCPFValido(pessoa.getCpf()))
 			throw new RequiredFieldException("O CPF informado é inválido!");
 	}
 
